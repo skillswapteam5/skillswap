@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up - SkillSwap</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-page">
+
+    <aside class="auth-side">
+      <a href="index.html" class="brand"><img src="images/logo.svg" alt="SkillSwap logo"><span>SkillSwap</span></a>
+      <div>
+        <h2>Join the skill exchange community 🚀</h2>
+        <p>Create your free account in 3 quick steps and get <b>50 Skill Points</b> as a welcome bonus.</p>
+        <ul>
+          <li>Step 1: Create your account</li>
+          <li>Step 2: Tell us about yourself</li>
+          <li>Step 3: Choose skills to teach & learn</li>
+        </ul>
+      </div>
+      <p class="small" style="opacity:.8">Your data is saved in this browser (demo version).</p>
+    </aside>
+
+    <main class="auth-main">
+      <div class="auth-box">
+        <a href="index.html" class="brand auth-mobile-brand"><img src="images/logo.svg" alt="SkillSwap logo"><span>SkillSwap</span></a>
+        <div class="steps-bar"><div class="on" id="bar1"></div><div id="bar2"></div><div id="bar3"></div></div>
+
+        <form class="form" id="signupForm" novalidate>
+          <div class="form-error hidden" id="signupError"></div>
+
+          <!-- Step 1 -->
+          <div class="signup-step" id="step1">
+            <h1>Create account</h1>
+            <p class="muted mb">Step 1 of 3: Your login details</p>
+            <div class="form">
+              <label>Full name<input name="name" placeholder="e.g. Mohamed Ali" autocomplete="name"></label>
+              <label>Email<input type="email" name="email" placeholder="you@example.com" autocomplete="email"></label>
+              <label>Password<input type="password" name="password" placeholder="At least 6 characters" autocomplete="new-password"></label>
+              <button type="button" class="btn btn-primary btn-lg btn-block" data-next="2">Continue</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="signup-step hidden" id="step2">
+            <h1>About you</h1>
+            <p class="muted mb">Step 2 of 3: This appears on your Skill Passport</p>
+            <div class="form">
+              <label>Title / Major<input name="title" placeholder="e.g. Computer Science Student"></label>
+              <label>University or company<input name="university" placeholder="e.g. Cairo University"></label>
+              <label>Short bio<textarea name="bio" rows="3" placeholder="What do you enjoy? What are your goals?"></textarea></label>
+              <div class="row">
+                <button type="button" class="btn btn-light btn-lg" data-next="1">Back</button>
+                <button type="button" class="btn btn-primary btn-lg" style="flex:1" data-next="3">Continue</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="signup-step hidden" id="step3">
+            <h1>Your skills</h1>
+            <p class="muted mb">Step 3 of 3: Choose at least one skill in each list</p>
+            <div class="form">
+              <div>
+                <div class="label-sm">🎓 Skills I can teach</div>
+                <div class="chip-scroll" id="teachChips"></div>
+              </div>
+              <label>My teaching level
+                <select name="level">
+                  <option>Beginner</option>
+                  <option selected>Intermediate</option>
+                  <option>Advanced</option>
+                </select>
+              </label>
+              <div>
+                <div class="label-sm">📚 Skills I want to learn</div>
+                <div class="chip-scroll" id="learnChips"></div>
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-light btn-lg" data-next="2">Back</button>
+                <button type="submit" class="btn btn-primary btn-lg" style="flex:1">Create my account</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="login.html"><b>Log in</b></a></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if (Store.currentUser()) window.location.href = "dashboard.html";
+
+    var form = document.getElementById("signupForm");
+    var errorBox = document.getElementById("signupError");
+    var teachIds = [], learnIds = [];
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.classList.toggle("hidden", !message);
+    }
+
+    // Build the skill chips
+    function buildChips(boxId, selected, onClass) {
+      var box = document.getElementById(boxId);
+      box.innerHTML = Store.getSkills().map(function (s) {
+        return '<button type="button" class="pick-chip" data-id="' + s.id + '">' + esc(s.name) + '</button>';
+      }).join("");
+      box.onclick = function (e) {
+        var chip = e.target.closest(".pick-chip");
+        if (!chip) return;
+        var id = Number(chip.dataset.id);
+        var i = selected.indexOf(id);
+        if (i === -1) selected.push(id); else selected.splice(i, 1);
+        chip.classList.toggle(onClass);
+      };
+    }
+    buildChips("teachChips", teachIds, "on");
+    buildChips("learnChips", learnIds, "on-blue");
+
+    // Check each step before moving to the next one
+    function validateStep(step) {
+      if (step >= 2) {
+        if (form.name.value.trim().length < 3) return "Please enter your full name.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) return "Please enter a valid email address.";
+        if (form.password.value.length < 6) return "Password must be at least 6 characters.";
+        var exists = Store.getUsers().some(function (u) { return u.email === form.email.value.trim().toLowerCase(); });
+        if (exists) return "This email is already registered. Try logging in.";
+      }
+      return "";
+    }
+
+    function goTo(step) {
+      showError("");
+      [1, 2, 3].forEach(function (n) {
+        document.getElementById("step" + n).classList.toggle("hidden", n !== step);
+        document.getElementById("bar" + n).classList.toggle("on", n <= step);
+      });
+    }
+
+    form.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-next]");
+      if (!btn) return;
+      var step = Number(btn.dataset.next);
+      var error = validateStep(step);
+      if (error) { showError(error); return; }
+      goTo(step);
+    });
+
+    form.onsubmit = function (e) {
+      e.preventDefault();
+      if (!teachIds.length) { showError("Choose at least one skill you can teach."); return; }
+      if (!learnIds.length) { showError("Choose at least one skill you want to learn."); return; }
+      try {
+        Store.register({
+          name: form.name.value, email: form.email.value, password: form.password.value,
+          title: form.title.value, university: form.university.value, bio: form.bio.value,
+          teach: teachIds.map(function (id) { return { skill: id, level: form.level.value }; }),
+          learn: learnIds
+        });
+        window.location.href = "dashboard.html?welcome=1";
+      } catch (err) {
+        showError(err.message);
+      }
+    };
+  </script>
+</body>
+</html>

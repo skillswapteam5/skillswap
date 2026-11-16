@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillSwap - Learn, Teach & Grow</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="public">
+
+  <!-- ===== Navigation bar ===== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand"><img src="images/logo.svg" alt="SkillSwap logo"><span>SkillSwap</span></a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#community">Community</a>
+      </nav>
+      <div class="nav-cta" id="navCta">
+        <a href="login.html" class="btn btn-light">Log in</a>
+        <a href="signup.html" class="btn btn-primary">Get Started</a>
+      </div>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="pill">✨ AI-powered skill exchange platform</span>
+        <h1>Teach what you know.<br><span class="gradient-text">Learn what you love.</span></h1>
+        <p class="lead">SkillSwap connects you with people who can teach the skills you want, in exchange for the skills you already have. Collaborate on real projects, earn Skill Points and build a portfolio that proves what you can do.</p>
+        <div class="hero-actions">
+          <a href="signup.html" class="btn btn-primary btn-lg">Get Started - it's free</a>
+          <a href="login.html?demo=1" class="btn btn-light btn-lg">Try the demo</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>10+</b><span>Active members</span></div>
+          <div><b>29</b><span>Skills to swap</span></div>
+          <div><b>6</b><span>Team projects</span></div>
+        </div>
+      </div>
+
+      <!-- Decorative app preview made with HTML -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="float-card fc-main">
+          <div class="row"><span class="avatar" style="background:#3B82F6">SA</span>
+            <div><b>Sara Ahmed</b><div class="muted small">UI/UX Designer</div></div></div>
+          <div class="swap-line mt"><span class="tag">UI/UX Design</span><span class="swap-arrow">⇄</span><span class="tag blue">JavaScript</span></div>
+          <p class="small muted">"Hi! I can teach you UI/UX and you help me with JavaScript?"</p>
+          <div class="row mt"><span class="btn btn-primary btn-sm">Accept</span><span class="btn btn-light btn-sm">Decline</span></div>
+        </div>
+        <div class="float-card fc-match">
+          <div class="small muted">AI Match</div>
+          <div class="row mt"><div class="score-ring" style="--p:94"><span>94%</span></div>
+            <div><b>Youssef M.</b><div class="small muted">Machine Learning</div></div></div>
+        </div>
+        <div class="float-card fc-points">
+          <div class="small muted">Skill Points</div>
+          <div style="font-size:28px;font-weight:800" class="gradient-text">⚡ 320</div>
+          <div class="progress mt"><div class="progress-fill" style="width:40%"></div></div>
+          <div class="small muted mt">🧭 Explorer level</div>
+        </div>
+        <div class="float-card fc-cv">
+          <div class="small muted">AI CV Analysis</div>
+          <b style="font-size:22px">82 / 100</b>
+          <div class="tags mt"><span class="tag green">HTML & CSS</span><span class="tag green">JavaScript</span><span class="tag red">+ Figma</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Features ===== -->
+  <section class="section alt" id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Everything you need to grow your skills</h2>
+        <p>One platform to learn, teach, collaborate and prove your skills, without paying for courses.</p>
+      </div>
+      <div class="grid grid-3" id="featureGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>How SkillSwap works</h2>
+        <p>Start swapping skills in three simple steps.</p>
+      </div>
+      <div class="grid grid-3 steps">
+        <div class="step"><div class="step-num">1</div><h3>Create your profile</h3><p>Add the skills you can teach and the skills you want to learn.</p></div>
+        <div class="step"><div class="step-num">2</div><h3>Get AI matches</h3><p>Our AI suggests the best people to swap skills with, based on what you both need.</p></div>
+        <div class="step"><div class="step-num">3</div><h3>Swap, build & earn</h3><p>Exchange skills, join team projects, collect Skill Points and grow your Skill Passport.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="section alt" id="community">
+    <div class="container">
+      <div class="section-head">
+        <h2>Loved by students and young professionals</h2>
+        <p>Real exchanges, real projects, real skills.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"I taught HTML & CSS and learned Machine Learning basics in return. The AI matching found me the perfect partner in seconds."</p>
+          <div class="row"><span class="avatar sm" style="background:#6C4CF1">OK</span><div><b>Omar Khaled</b><div class="small muted">CS Student</div></div></div>
+        </div>
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"Joining the Campus Marketplace project gave me real team experience I could put in my portfolio."</p>
+          <div class="row"><span class="avatar sm" style="background:#3B82F6">SA</span><div><b>Sara Ahmed</b><div class="small muted">UI/UX Designer</div></div></div>
+        </div>
+        <div class="card testimonial">
+          <div class="stars">★★★★☆</div>
+          <p>"The CV analysis showed me exactly which skills I was missing for a marketing role, then matched me with mentors."</p>
+          <div class="row"><span class="avatar sm" style="background:#EC4899">NH</span><div><b>Nour Hassan</b><div class="small muted">Marketing Specialist</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Call to action ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to swap your first skill?</h2>
+        <p>Join SkillSwap today and get 50 Skill Points as a welcome bonus.</p>
+        <a href="signup.html" class="btn btn-light btn-lg">Create free account</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <a href="index.html" class="brand"><img src="images/logo.svg" alt="SkillSwap logo"><span>SkillSwap</span></a>
+      <p class="small">© 2026 SkillSwap - University Project. Learn, teach & grow together.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Feature list shown on the landing page
+    var FEATURES = [
+      ["sparkles", "AI Skill Matching", "Choose what you want to learn and get matched with the best people to learn from."],
+      ["search", "Explore Skills", "Search hundreds of skills and find the people who teach them."],
+      ["swap", "Skill Exchange", "Send, accept and manage skill swap requests. Teach one skill, learn another."],
+      ["folder", "Collaborative Projects", "Join real-world team projects, share tasks and track progress together."],
+      ["passport", "Skill Passport", "Your portfolio of skills, completed projects, badges and reviews in one page."],
+      ["gift", "Points & Rewards", "Earn Skill Points for every swap and project, then redeem them for rewards."],
+      ["file", "AI CV Analysis", "Upload your CV to detect your skills, weaknesses and what to learn next."],
+      ["home", "Personal Dashboard", "See your skills, learning progress, requests and projects at a glance."],
+      ["refresh", "Progress Tracking", "Track your learning goals and level up from Beginner to Master."]
+    ];
+    document.getElementById("featureGrid").innerHTML = FEATURES.map(function (f) {
+      return '<div class="feature"><div class="feature-icon">' + icon(f[0]) + '</div><h3>' + f[1] + '</h3><p>' + f[2] + '</p></div>';
+    }).join("");
+
+    // Mobile menu
+    document.getElementById("navToggle").onclick = function () {
+      document.getElementById("navbar").classList.toggle("open");
+    };
+
+    // If already logged in, show "Go to Dashboard" instead of login buttons
+    if (Store.currentUser()) {
+      document.getElementById("navCta").innerHTML = '<a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>';
+    }
+  </script>
+</body>
+</html>
